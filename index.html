@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Barometer is a product research and design agency in Singapore. Go from idea to validated product in 1–2 months, without hiring a full-time team." />
+  <meta name="description" content="Barometer is a product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
   <title>Barometer — Product Research & Design</title>
   <link rel="icon" type="image/svg+xml" href="./Barometer Logo Vector.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,9 +12,10 @@
       theme: {
         extend: {
           colors: {
-            'bblue':   '#0D00FF',
+            'bblue':   '#0059FF',
             'bdark':   '#202020',
             'bindigo': '#8680FF',
+            'byellow': '#FFC300',
             'bgrey':   '#7A7A7A',
             'boff':    '#F7F7F5',
           },
@@ -26,7 +27,8 @@
     /* ── DESIGN TOKENS ──────────────────────────────────────── */
     :root {
       /* Colors */
-      --color-blue:         #0D00FF;
+      --color-blue:         #0059FF;
+      --color-yellow:       #FFC300;
       --color-dark:         #202020;
       --color-indigo:       #8680FF;
       --color-grey:         #7A7A7A;
@@ -288,9 +290,9 @@
     .service-card:hover {
       transform: translateY(-4px);
       box-shadow:
-        0 2px 4px rgba(13, 0, 255, 0.04),
-        0 8px 20px rgba(13, 0, 255, 0.08),
-        0 24px 48px rgba(13, 0, 255, 0.06);
+        0 2px 4px rgba(0, 89, 255, 0.04),
+        0 8px 20px rgba(0, 89, 255, 0.08),
+        0 24px 48px rgba(0, 89, 255, 0.06);
     }
     .service-card-featured {
       background: var(--color-blue);
@@ -298,9 +300,9 @@
     }
     .service-card-featured:hover {
       box-shadow:
-        0 2px 4px rgba(13, 0, 255, 0.2),
-        0 8px 20px rgba(13, 0, 255, 0.3),
-        0 24px 48px rgba(13, 0, 255, 0.2);
+        0 2px 4px rgba(0, 89, 255, 0.2),
+        0 8px 20px rgba(0, 89, 255, 0.3),
+        0 24px 48px rgba(0, 89, 255, 0.2);
     }
 
     /* ── SERVICE LIST ITEMS ──────────────────────────────────── */
@@ -388,8 +390,8 @@
       border: 1.5px solid var(--color-border);
       z-index: 2;
       box-shadow:
-        0 4px 8px rgba(13, 0, 255, 0.06),
-        0 16px 32px rgba(13, 0, 255, 0.08);
+        0 4px 8px rgba(0, 89, 255, 0.06),
+        0 16px 32px rgba(0, 89, 255, 0.08);
     }
 
     /* ── NAV LINK ─────────────────────────────────────────────── */
@@ -457,6 +459,90 @@
     @media (min-width: 768px) and (max-width: 1023px) {
       .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
     }
+
+    /* ── MOBILE STAT CARD (inline) ──────────────────────────── */
+    .stat-card-mobile { display: none; }
+
+    /* ── SCROLL HINT ARROW ───────────────────────────────────── */
+    .scroll-hint {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+      background: var(--color-off);
+    }
+    .scroll-hint-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      animation: scrollbounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollbounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+    @media (max-width: 1023px) {
+      .scroll-hint { display: flex; }
+      .stat-card-mobile {
+        display: block;
+        padding: 16px 20px;
+        border: 1.5px solid var(--color-border);
+        background: var(--color-white);
+        box-shadow: 0 4px 8px rgba(0,89,255,0.06), 0 16px 32px rgba(0,89,255,0.08);
+        margin-top: 28px;
+        margin-bottom: 32px;
+        max-width: 240px;
+      }
+      #hero-section {
+        min-height: calc(100dvh - 270px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+      }
+      #hero-section .container { width: 100%; }
+
+      /* Fixed-height typewriter wrapper — text anchors to bottom */
+      .typewriter-wrapper {
+        min-height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 28px;
+      }
+
+      /* Larger heading on mobile */
+      .t-display { font-size: 3.125rem; }
+
+      /* Tighten description → stat card gap */
+      #hero-desc { margin-bottom: 12px !important; }
+      .stat-card-mobile { margin-top: 16px !important; margin-bottom: 28px !important; }
+    }
+
+    /* ── HERO MOBILE BACKGROUND ─────────────────────────────── */
+    .hero-bg-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.15;
+    }
+    @media (max-width: 1023px) {
+      .hero-bg-overlay { display: block; }
+      .hero-visual { display: none !important; }
+    }
+
+    /* ── TYPEWRITER CURSOR ───────────────────────────────────── */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -477,12 +563,13 @@
             class="hidden lg:block"
             style="height:26px; width:auto;"
           />
-          <!-- Mobile: circle B mark -->
-          <svg class="lg:hidden" width="36" height="36" viewBox="0 0 928 928" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M862 464C862 244.191 683.809 66 464 66C244.191 66 66 244.191 66 464C66 683.809 244.191 862 464 862V928C207.74 928 0 720.26 0 464C0 207.74 207.74 0 464 0C720.26 0 928 207.74 928 464C928 720.26 720.26 928 464 928V862C683.809 862 862 683.809 862 464Z" fill="#0D00FF"/>
-            <path d="M335.897 612V329.6H503.097C520.697 330.4 553.497 331.6 574.697 352.4C587.497 364.4 593.897 383.2 593.897 401.2C593.897 422 585.097 439.6 573.897 450.8C566.297 458.4 559.097 461.6 549.897 466C561.497 469.2 571.897 472 583.097 483.2C599.097 498.8 601.897 517.2 601.897 531.2C601.897 552.4 595.497 574.4 581.097 588.8C559.897 610.4 530.697 611.2 508.697 612H335.897ZM476.297 389.2H425.097V437.2H474.297C482.697 437.2 503.497 437.2 503.497 413.6C503.497 390.4 484.297 389.6 476.297 389.2ZM478.697 496.4H424.697V551.2H480.697C488.697 550.8 497.097 550.4 503.897 542.8C508.297 538.4 511.097 531.6 511.097 524.4C511.097 498 487.097 496.8 478.697 496.4Z" fill="#0D00FF"/>
-            <path d="M619.303 536.8H692.103V612H619.303V536.8Z" fill="#0D00FF"/>
-          </svg>
+          <!-- Mobile: circle mark -->
+          <img
+            src="./Barometer Logo Vector.svg"
+            alt="Barometer"
+            class="lg:hidden"
+            style="height:36px; width:36px;"
+          />
         </a>
 
         <!-- Nav links (desktop only) -->
@@ -508,24 +595,32 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- HERO                                                     -->
   <!-- ═══════════════════════════════════════════════════════ -->
-  <section id="hero-section" data-section="hero" style="padding: 60px 0 80px;">
-    <div class="container">
+  <section id="hero-section" data-section="hero" style="padding: 60px 0 80px; position:relative;">
+    <!-- Mobile: SVG as faint background (hidden on desktop) -->
+    <div class="hero-bg-overlay" aria-hidden="true">
+      <img src="./hero-placeholder.svg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center right;" />
+    </div>
+    <div class="container" style="position:relative; z-index:1;">
       <div class="hero-grid">
 
         <!-- Left: Copy -->
         <div>
-          <div class="t-label" style="margin-bottom:28px; display:flex; align-items:center; gap:10px;">
-            <span style="display:inline-block; width:24px; height:1.5px; background:#0D00FF;"></span>
-            Singapore · Est. 2026
+
+          <div class="typewriter-wrapper">
+            <h1 class="t-display" style="margin-bottom:0;">
+              What do you<br>want to <span style="color:#0059FF;"><span id="typewriter">learn</span><span id="typewriter-cursor" style="display:inline-block; width:3px; background:#0059FF; margin-left:2px; animation:blink 0.7s step-end infinite; vertical-align:baseline;">&nbsp;</span></span> today?
+            </h1>
           </div>
 
-          <h1 class="t-display" style="margin-bottom:36px;">
-            Build products<br>people actually<br><span style="color:#0D00FF;">want to use.</span>
-          </h1>
-
-          <p class="t-body" style="font-size:1.0625rem; max-width:440px; margin-bottom:40px;">
-            Barometer is a product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team.
+          <p id="hero-desc" class="t-body" style="font-size:1.0625rem; max-width:440px; margin-bottom:40px;">
+            Barometer is a product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team. 
           </p>
+
+          <!-- Mobile: inline stat card (desktop version is in hero-visual) -->
+          <div class="stat-card-mobile">
+            <div style="width:18px; height:2px; background:#0059FF; margin-bottom:10px;"></div>
+            <div style="font-size:0.875rem; font-weight:600; color:#202020; line-height:1.45;">Go from idea to launch within a month</div>
+          </div>
 
           <div style="display:flex; gap:14px; flex-wrap:wrap;">
             <a href="#services" class="btn btn-primary">
@@ -538,8 +633,8 @@
           </div>
         </div>
 
-        <!-- Right: Visual -->
-        <div style="position:relative;">
+        <!-- Right: Visual (hidden on mobile — shown as section background instead) -->
+        <div class="hero-visual" style="position:relative;">
           <!-- Decorative circles (hidden on mobile) -->
           <div class="hero-deco" style="
             position:absolute; top:-52px; right:-52px;
@@ -565,8 +660,8 @@
 
           <!-- Floating stat -->
           <div class="stat-card">
-            <div style="font-size:2.25rem; font-weight:900; letter-spacing:-0.04em; color:#0D00FF; line-height:1;">1–2</div>
-            <div style="font-size:0.75rem; font-weight:500; color:#7A7A7A; margin-top:4px; letter-spacing:0.04em; text-transform:uppercase;">months to launch</div>
+            <div style="width:18px; height:2px; background:#0059FF; margin-bottom:10px;"></div>
+            <div style="font-size:0.875rem; font-weight:600; color:#202020; line-height:1.45; max-width:158px;">Go from idea to launch within <span style="color: var(--color-blue)">1 month</span>.</div>
           </div>
         </div>
 
@@ -581,35 +676,36 @@
   <div class="marquee-outer" data-component="marquee" aria-hidden="true">
     <div class="marquee-track">
       <!-- Set A -->
-      <span class="marquee-item">User Research</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Rapid Prototyping</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">UX Design</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Figma Handoff</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Usability Testing</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Research Training</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Design Systems</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">UX Audit</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Service Design</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Concept Testing</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">User Research</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Product Market Fit</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Rapid Prototyping</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Usability Testing</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Design Refinements</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Product Launch</span><span class="marquee-dot">←</span>
       <!-- Set B (duplicate for seamless loop) -->
-      <span class="marquee-item">User Research</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Rapid Prototyping</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">UX Design</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Figma Handoff</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Usability Testing</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Research Training</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Design Systems</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">UX Audit</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Service Design</span><span class="marquee-dot">·</span>
-      <span class="marquee-item">Concept Testing</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">User Research</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Product Market Fit</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Rapid Prototyping</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Usability Testing</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Design Refinements</span><span class="marquee-dot">←</span>
+      <span class="marquee-item">Product Launch</span><span class="marquee-dot">←</span>
     </div>
+  </div>
+
+  <!-- Mobile: scroll hint arrow (hidden on desktop) -->
+  <div class="scroll-hint">
+    <a href="#value-props" class="scroll-hint-btn" aria-label="Scroll to explore">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 5V19M12 19L7 14M12 19L17 14" stroke="#0059FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
   </div>
 
 
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- VALUE PROPS                                              -->
   <!-- ═══════════════════════════════════════════════════════ -->
-  <section data-section="value-props" style="background:#F7F7F5; padding:100px 0;">
+  <section id="value-props" data-section="value-props" style="background:#F7F7F5; padding:100px 0;">
     <div class="container">
 
       <div style="margin-bottom:64px;">
@@ -624,7 +720,7 @@
         <!-- 1 -->
         <div data-component="value-card" style="background:#fff; padding:48px 40px;">
           <div style="
-            width:44px; height:44px; border-radius:50%; background:#0D00FF;
+            width:44px; height:44px; border-radius:50%; background:#0059FF;
             display:flex; align-items:center; justify-content:center; margin-bottom:28px;
           ">
             <!-- lightning bolt icon -->
@@ -634,14 +730,14 @@
           </div>
           <h3 class="t-h3" style="margin-bottom:12px;">Move faster.</h3>
           <p class="t-body">
-            Idea to Figma handoff in 1–2 months. No lengthy hiring process, no onboarding lag — just research and design, from day one.
+            Idea to Figma handoff as fast as 1–2 months. No lengthy hiring process, no onboarding lag. What do you want to build with us?
           </p>
         </div>
 
         <!-- 2 -->
         <div data-component="value-card" style="background:#fff; padding:48px 40px;">
           <div style="
-            width:44px; height:44px; border-radius:50%; background:#0D00FF;
+            width:44px; height:44px; border-radius:50%; background:#FFC300;
             display:flex; align-items:center; justify-content:center; margin-bottom:28px;
           ">
             <!-- dollar/cost icon -->
@@ -652,14 +748,14 @@
           </div>
           <h3 class="t-h3" style="margin-bottom:12px;">Spend less.</h3>
           <p class="t-body">
-            Senior research and design quality at a fraction of a full-time team's cost. No salaries, benefits, or overhead — just results.
+            Senior research and design quality at a fraction of a full-time team's cost. 
           </p>
         </div>
 
         <!-- 3 -->
         <div data-component="value-card" style="background:#fff; padding:48px 40px;">
           <div style="
-            width:44px; height:44px; border-radius:50%; background:#0D00FF;
+            width:44px; height:44px; border-radius:50%; background:#8680FF;
             display:flex; align-items:center; justify-content:center; margin-bottom:28px;
           ">
             <!-- check/confidence icon -->
@@ -669,7 +765,7 @@
           </div>
           <h3 class="t-h3" style="margin-bottom:12px;">Build with confidence.</h3>
           <p class="t-body">
-            Every decision backed by real user data. Research-first means fewer wrong turns, less wasted build time, and products that actually land.
+            Every decision backed by real user data. Research-first means fewer wrong turns, less wasted build time, and products that actually get used.
           </p>
         </div>
 
@@ -697,25 +793,56 @@
       <div class="principle-grid">
 
         <div class="principle-cell" data-component="process-step">
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0D00FF; text-transform:uppercase; margin-bottom:20px;">01</div>
+          <!-- Discover icon: magnifying glass -->
+          <div style="width:44px; height:44px; border-radius:50%; background:#0059FF; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M20 20L16.65 16.65" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0059FF; text-transform:uppercase; margin-bottom:16px;">01</div>
           <h3 class="t-h3" style="margin-bottom:14px;">Discover.</h3>
           <p class="t-body">We start with your users. Through interviews, contextual inquiries, and market research, we map the landscape before a single pixel gets designed.</p>
         </div>
 
         <div class="principle-cell" data-component="process-step">
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0D00FF; text-transform:uppercase; margin-bottom:20px;">02</div>
+          <!-- Validate icon: shield check -->
+          <div style="width:44px; height:44px; border-radius:50%; background:#0059FF; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3L4 7V12C4 16.42 7.42 20.56 12 21C16.58 20.56 20 16.42 20 12V7L12 3Z" stroke="white" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M9 12L11 14L15 10" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0059FF; text-transform:uppercase; margin-bottom:16px;">02</div>
           <h3 class="t-h3" style="margin-bottom:14px;">Validate.</h3>
           <p class="t-body">Ideas get tested early and often. Usability testing and prototype validation ensure you're building something people want before committing to development.</p>
         </div>
 
         <div class="principle-cell" data-component="process-step">
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0D00FF; text-transform:uppercase; margin-bottom:20px;">03</div>
+          <!-- Design icon: pen nib -->
+          <div style="width:44px; height:44px; border-radius:50%; background:#0059FF; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 19L19 12L15 8L8 15L12 19Z" stroke="white" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M8 15L5 19L9 19L8 15Z" stroke="white" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M15 8L17 4L20 7L16 9" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0059FF; text-transform:uppercase; margin-bottom:16px;">03</div>
           <h3 class="t-h3" style="margin-bottom:14px;">Design.</h3>
           <p class="t-body">We turn validated insights into polished interfaces. Every UI decision connects back to research — so the product is beautiful, and it works.</p>
         </div>
 
         <div class="principle-cell" data-component="process-step">
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0D00FF; text-transform:uppercase; margin-bottom:20px;">04</div>
+          <!-- Deliver icon: package -->
+          <div style="width:44px; height:44px; border-radius:50%; background:#0059FF; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 10V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V10" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M21 10H3L5 4H19L21 10Z" stroke="white" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M12 4V21" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M3 10H21" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.12em; color:#0059FF; text-transform:uppercase; margin-bottom:16px;">04</div>
           <h3 class="t-h3" style="margin-bottom:14px;">Deliver.</h3>
           <p class="t-body">You receive a complete Figma handoff: UI designs, a design system, research findings, and documentation — everything your dev team needs to build with confidence.</p>
         </div>
@@ -742,9 +869,18 @@
 
         <!-- ── Service 1: Research & Design ── -->
         <div class="service-card" id="research-design">
+          <!-- Icon -->
+          <div style="width:44px; height:44px; border-radius:50%; background:#0059FF; display:flex; align-items:center; justify-content:center; margin-bottom:28px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="8" height="8" rx="1" stroke="white" stroke-width="1.75"/>
+              <rect x="13" y="3" width="8" height="8" rx="1" stroke="white" stroke-width="1.75"/>
+              <rect x="3" y="13" width="8" height="8" rx="1" stroke="white" stroke-width="1.75"/>
+              <path d="M17 13V21M13 17H21" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div style="margin-bottom:32px;">
             <div class="t-label" style="margin-bottom:14px;">For startups & founders</div>
-            <div style="width:36px; height:3px; background:#0D00FF;"></div>
+            <div style="width:36px; height:3px; background:#0059FF;"></div>
           </div>
 
           <h3 class="t-h3" style="margin-bottom:16px; line-height:1.2;">
@@ -752,86 +888,87 @@
           </h3>
 
           <p class="t-body" style="margin-bottom:28px; flex:1;">
-            Go from idea to Figma handoff in 1–2 months. We do the research, design the prototype, and hand off everything your developers need — at a fraction of a full-time team's cost.
+            Our fastest sprints took ideas to Figma handoffs within a month. We do the research, design the prototype, and hand off everything your developers need — at a fraction of a full-time team's cost.
           </p>
 
           <div style="margin-bottom:32px;">
             <div class="t-label" style="margin-bottom:14px;">Includes</div>
             <div>
               <div class="service-list-item">
-                <span style="color:#0D00FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#0059FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 User interviews, focus groups & usability testing
               </div>
               <div class="service-list-item">
-                <span style="color:#0D00FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#0059FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 UI/UX design & rapid prototyping
               </div>
               <div class="service-list-item">
-                <span style="color:#0D00FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#0059FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Figma design system & developer handoff
               </div>
               <div class="service-list-item">
-                <span style="color:#0D00FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#0059FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Market research & UX audit
               </div>
             </div>
           </div>
-
-          <a href="mailto:hello@barometer.sg" class="btn btn-primary" style="justify-content:center; text-align:center;">
-            Get started
-            <svg class="arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
         </div>
 
-        <!-- ── Service 2: Training (featured) ── -->
-        <div class="service-card service-card-featured" id="training">
+        <!-- ── Service 2: Training ── -->
+        <div class="service-card" id="training">
+          <div style="width:44px; height:44px; border-radius:50%; background:#FFC300; display:flex; align-items:center; justify-content:center; margin-bottom:28px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M17 21V19C17 17.9 16.1 17 15 17H9C7.9 17 7 17.9 7 19V21" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              <circle cx="12" cy="10" r="3" stroke="white" stroke-width="1.75"/>
+              <path d="M3 7L12 3L21 7" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 7V13" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div style="margin-bottom:32px;">
-            <div style="font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:14px;">For corporates & scale-ups</div>
-            <div style="width:36px; height:3px; background:#fff;"></div>
+            <div class="t-label" style="margin-bottom:14px;">For corporates & scale-ups</div>
+            <div style="width:36px; height:3px; background:#FFC300;"></div>
           </div>
 
-          <h3 class="t-h3" style="margin-bottom:16px; line-height:1.2; color:#fff;">
+          <h3 class="t-h3" style="margin-bottom:16px; line-height:1.2;">
             Research Training & Democratisation
           </h3>
 
-          <p style="font-size:1rem; line-height:1.72; color:rgba(255,255,255,0.8); margin-bottom:28px; flex:1;">
+          <p class="t-body" style="margin-bottom:28px; flex:1;">
             Build an internal research capability from day one. We train your PMs, designers, and non-researchers to connect user insights to product decisions — and leave you with frameworks your team will use long after the engagement ends.
           </p>
 
           <div style="margin-bottom:32px;">
-            <div style="font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:14px;">Includes</div>
+            <div class="t-label" style="margin-bottom:14px;">Includes</div>
             <div>
-              <div class="service-list-item service-list-item-featured">
-                <span style="color:#fff; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+              <div class="service-list-item">
+                <span style="color:#FFC300; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Research workshop training for all roles
               </div>
-              <div class="service-list-item service-list-item-featured">
-                <span style="color:#fff; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+              <div class="service-list-item">
+                <span style="color:#FFC300; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Internal research practice setup
               </div>
-              <div class="service-list-item service-list-item-featured">
-                <span style="color:#fff; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+              <div class="service-list-item">
+                <span style="color:#FFC300; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Service design & decision frameworks
               </div>
-              <div class="service-list-item service-list-item-featured">
-                <span style="color:#fff; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+              <div class="service-list-item">
+                <span style="color:#FFC300; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Fractional research support, part-time
               </div>
             </div>
           </div>
-
-          <a href="mailto:hello@barometer.sg" class="btn btn-outline-white" style="justify-content:center; text-align:center;">
-            Get started
-            <svg class="arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
         </div>
 
         <!-- ── Service 3: Coaching ── -->
         <div class="service-card" id="coaching">
+          <div style="width:44px; height:44px; border-radius:50%; background:#8680FF; display:flex; align-items:center; justify-content:center; margin-bottom:28px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3C10.34 3 9 4.34 9 6C9 7.66 10.34 9 12 9C13.66 9 15 7.66 15 6C15 4.34 13.66 3 12 3Z" stroke="white" stroke-width="1.75"/>
+              <path d="M6 21V19C6 16.79 7.79 15 10 15H14C16.21 15 18 16.79 18 19V21" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M16 8L18 10L22 6" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div style="margin-bottom:32px;">
             <div class="t-label" style="margin-bottom:14px;">For UX professionals</div>
             <div style="width:36px; height:3px; background:#8680FF;"></div>
@@ -849,30 +986,24 @@
             <div class="t-label" style="margin-bottom:14px;">Includes</div>
             <div>
               <div class="service-list-item">
-                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 1:1 coaching sessions, tailored to your goals
               </div>
               <div class="service-list-item">
-                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Academic & industry-backed methods
               </div>
               <div class="service-list-item">
-                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Reusable frameworks for your practice
               </div>
               <div class="service-list-item">
-                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">→</span>
+                <span style="color:#8680FF; font-weight:700; flex-shrink:0; margin-top:1px;">←</span>
                 Fractional senior research guidance
               </div>
             </div>
           </div>
 
-          <a href="mailto:hello@barometer.sg" class="btn btn-outline" style="justify-content:center; text-align:center;">
-            Get started
-            <svg class="arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
         </div>
 
       </div>
@@ -930,11 +1061,7 @@
         <!-- Brand -->
         <div>
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
-            <svg width="30" height="30" viewBox="0 0 928 928" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M862 464C862 244.191 683.809 66 464 66C244.191 66 66 244.191 66 464C66 683.809 244.191 862 464 862V928C207.74 928 0 720.26 0 464C0 207.74 207.74 0 464 0C720.26 0 928 207.74 928 464C928 720.26 720.26 928 464 928V862C683.809 862 862 683.809 862 464Z" fill="#0D00FF"/>
-              <path d="M335.897 612V329.6H503.097C520.697 330.4 553.497 331.6 574.697 352.4C587.497 364.4 593.897 383.2 593.897 401.2C593.897 422 585.097 439.6 573.897 450.8C566.297 458.4 559.097 461.6 549.897 466C561.497 469.2 571.897 472 583.097 483.2C599.097 498.8 601.897 517.2 601.897 531.2C601.897 552.4 595.497 574.4 581.097 588.8C559.897 610.4 530.697 611.2 508.697 612H335.897ZM476.297 389.2H425.097V437.2H474.297C482.697 437.2 503.497 437.2 503.497 413.6C503.497 390.4 484.297 389.6 476.297 389.2ZM478.697 496.4H424.697V551.2H480.697C488.697 550.8 497.097 550.4 503.897 542.8C508.297 538.4 511.097 531.6 511.097 524.4C511.097 498 487.097 496.8 478.697 496.4Z" fill="#0D00FF"/>
-              <path d="M619.303 536.8H692.103V612H619.303V536.8Z" fill="#0D00FF"/>
-            </svg>
+            <img src="./Barometer Logo Vector.svg" alt="" aria-hidden="true" style="width:30px; height:30px;" />
             <span style="font-family:'Akzidenz',sans-serif; font-weight:700; font-size:1.125rem; letter-spacing:-0.025em; color:#fff;">Barometer.</span>
           </div>
           <p style="font-size:0.9375rem; line-height:1.7; max-width:280px;">
@@ -973,25 +1100,55 @@
           </ul>
         </div>
 
-        <!-- Legal -->
-        <div>
-          <div style="font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:20px;">Legal</div>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
-        </div>
-
       </div>
 
       <!-- Bottom bar -->
       <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <span style="font-size:0.875rem;">Barometer Singapore Pte. Ltd. &copy; Est. 2026</span>
+        <span style="font-size:0.875rem;">Barometer.sg. &copy; Est. 2026</span>
         <a href="https://www.barometer.sg" style="font-size:0.875rem; color:rgba(255,255,255,0.3);">www.barometer.sg</a>
       </div>
 
     </div>
   </footer>
 
+  <script>
+    (function () {
+      const words   = ['learn', 'build', 'test'];
+      const el      = document.getElementById('typewriter');
+      const PAUSE   = 2600;  // ms to show full word
+      const TYPE_MS = 80;    // ms per character typed
+      const DEL_MS  = 50;    // ms per character deleted
+
+      let wordIndex = 0;
+      let charIndex = words[0].length; // start fully typed
+
+      function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+      async function cycle() {
+        while (true) {
+          await sleep(PAUSE);
+
+          // Delete current word
+          while (charIndex > 0) {
+            charIndex--;
+            el.textContent = words[wordIndex].slice(0, charIndex);
+            await sleep(DEL_MS);
+          }
+
+          // Advance to next word
+          wordIndex = (wordIndex + 1) % words.length;
+
+          // Type next word
+          while (charIndex < words[wordIndex].length) {
+            charIndex++;
+            el.textContent = words[wordIndex].slice(0, charIndex);
+            await sleep(TYPE_MS);
+          }
+        }
+      }
+
+      cycle();
+    })();
+  </script>
 </body>
 </html>
