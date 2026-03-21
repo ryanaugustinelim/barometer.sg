@@ -215,7 +215,7 @@
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 18s linear infinite;
+      animation: marquee 60s linear infinite;
     }
     .marquee-track:hover { animation-play-state: paused; }
     @keyframes marquee {
@@ -654,7 +654,7 @@
           <!-- Mobile: inline stat card (desktop version is in hero-visual) -->
           <div class="stat-card-mobile">
             <div style="width:18px; height:2px; background:#0059FF; margin-bottom:10px;"></div>
-            <div style="font-size:0.875rem; font-weight:600; color:#202020; line-height:1.45;">Go from idea to launch within a month</div>
+            <div style="font-size:0.875rem; font-weight:600; color:#202020; line-height:1.45;">Go from idea to launch within <span style="color: var(--color-blue); font-weight: bold;">1 month</span>.</div>
           </div>
 
           <div id="hero-cta-group" style="display:flex; gap:14px; flex-wrap:wrap;">
@@ -734,6 +734,7 @@
       <span class="marquee-item">Validate</span><span class="marquee-dot">←</span>
       <span class="marquee-item">Design</span><span class="marquee-dot">←</span>
       <span class="marquee-item">Deliver</span><span class="marquee-dot">←</span>
+
     </div>
   </div>
 
