@@ -1,0 +1,177 @@
+<svg width="640" height="520" viewBox="0 0 640 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Background                                   -->
+  <!-- ─────────────────────────────────────────── -->
+  <rect width="640" height="520" fill="#F0F0EE"/>
+
+  <!-- Subtle grid (60 px spacing) -->
+  <g stroke="#E2E2E0" stroke-width="0.75">
+    <line x1="0"   y1="60"  x2="640" y2="60"/>
+    <line x1="0"   y1="120" x2="640" y2="120"/>
+    <line x1="0"   y1="180" x2="640" y2="180"/>
+    <line x1="0"   y1="240" x2="640" y2="240"/>
+    <line x1="0"   y1="300" x2="640" y2="300"/>
+    <line x1="0"   y1="360" x2="640" y2="360"/>
+    <line x1="0"   y1="420" x2="640" y2="420"/>
+    <line x1="0"   y1="480" x2="640" y2="480"/>
+    <line x1="60"  y1="0"   x2="60"  y2="520"/>
+    <line x1="120" y1="0"   x2="120" y2="520"/>
+    <line x1="180" y1="0"   x2="180" y2="520"/>
+    <line x1="240" y1="0"   x2="240" y2="520"/>
+    <line x1="300" y1="0"   x2="300" y2="520"/>
+    <line x1="360" y1="0"   x2="360" y2="520"/>
+    <line x1="420" y1="0"   x2="420" y2="520"/>
+    <line x1="480" y1="0"   x2="480" y2="520"/>
+    <line x1="540" y1="0"   x2="540" y2="520"/>
+    <line x1="600" y1="0"   x2="600" y2="520"/>
+  </g>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Background arcs (from top-right anchor)     -->
+  <!-- Three concentric circles centered at (640,0) -->
+  <!-- ─────────────────────────────────────────── -->
+  <circle cx="640" cy="0" r="460" stroke="#DCDCDA" stroke-width="1"/>
+  <circle cx="640" cy="0" r="340" stroke="#DCDCDA" stroke-width="1"/>
+  <circle cx="640" cy="0" r="220" stroke="#DCDCDA" stroke-width="1"/>
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Main instrument circle — centred at (285,262) -->
+  <!-- Mirrors the brand ring proportions           -->
+  <!-- ─────────────────────────────────────────── -->
+  <g transform="translate(285,262)">
+
+    <!-- Outermost halo ring (very faint) -->
+    <circle r="168" stroke="#0D00FF" stroke-width="1" stroke-opacity="0.08"/>
+
+    <!-- ─── GAUGE ARC ───
+         280° sweep: from 130° to 50° going clockwise through the top.
+         At r=140:
+           130° → (-89.9,  107.3)
+           50°  → ( 89.9,  107.3)
+         large-arc=1 (>180°), sweep-flag=1 (clockwise)
+    ─── -->
+    <path
+      d="M -89.9,107.3 A 140,140 0 1,1 89.9,107.3"
+      stroke="#0D00FF"
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+
+    <!-- Closing gap hint: a short dashed segment across the opening -->
+    <path
+      d="M -89.9,107.3 L 89.9,107.3"
+      stroke="#0D00FF"
+      stroke-width="1"
+      stroke-opacity="0.18"
+      stroke-dasharray="4 5"
+    />
+
+    <!-- Inner structural rings -->
+    <circle r="100" stroke="#0D00FF" stroke-width="1.5" stroke-opacity="0.22"/>
+    <circle r="56"  stroke="#0D00FF" stroke-width="1.5" stroke-opacity="0.50"/>
+    <circle r="56"  fill="#0D00FF"   fill-opacity="0.04"/>
+
+    <!-- Cross-hairs through centre -->
+    <line x1="-168" y1="0" x2="168" y2="0" stroke="#0D00FF" stroke-width="0.75" stroke-opacity="0.18"/>
+    <line x1="0" y1="-168" x2="0" y2="168"  stroke="#0D00FF" stroke-width="0.75" stroke-opacity="0.18"/>
+
+    <!-- ─── TICK MARKS ───
+         10 ticks every 30° along the gauge arc (130° → 400°).
+         Each tick: inner endpoint at r=130, outer at r=143.
+         Values pre-computed:  (130·cosθ, 130·sinθ) → (143·cosθ, 143·sinθ)
+    ─── -->
+    <!-- θ=130°  cos=-0.6428 sin= 0.7660 -->
+    <line x1="-83.6"  y1=" 99.6" x2="-91.7"  y2="109.4" stroke="#0D00FF" stroke-width="1.5"/>
+    <!-- θ=160°  cos=-0.9397 sin= 0.3420 -->
+    <line x1="-122.2" y1=" 44.5" x2="-134.4" y2=" 48.9" stroke="#0D00FF" stroke-width="1.5"/>
+    <!-- θ=190°  cos=-0.9848 sin=-0.1736 -->
+    <line x1="-128.0" y1="-22.6" x2="-140.8" y2="-24.8" stroke="#0D00FF" stroke-width="1.5"/>
+    <!-- θ=220°  cos=-0.7660 sin=-0.6428 -->
+    <line x1="-99.6"  y1="-83.6" x2="-109.4" y2="-91.9" stroke="#0D00FF" stroke-width="1.5"/>
+    <!-- θ=250°  cos=-0.3420 sin=-0.9397 (MAJOR — near the 8 o'clock position) -->
+    <line x1="-44.5"  y1="-122.2" x2="-48.9" y2="-134.4" stroke="#0D00FF" stroke-width="2.5"/>
+    <!-- θ=280°  cos= 0.1736 sin=-0.9848 (MAJOR — near 12 o'clock) -->
+    <line x1=" 22.6"  y1="-128.0" x2=" 24.8" y2="-140.8" stroke="#0D00FF" stroke-width="2.5"/>
+    <!-- θ=310°  cos= 0.6428 sin=-0.7660 -->
+    <line x1=" 83.6"  y1="-99.6" x2=" 91.7"  y2="-109.4" stroke="#0D00FF" stroke-width="1.5"/>
+    <!-- θ=340°  cos= 0.9397 sin=-0.3420 -->
+    <line x1=" 122.2" y1="-44.5" x2=" 134.4" y2="-48.9"  stroke="#0D00FF" stroke-width="1.5"/>
+    <!-- θ= 10°  cos= 0.9848 sin= 0.1736 (MAJOR — near 3 o'clock) -->
+    <line x1=" 128.0" y1=" 22.6" x2=" 140.8" y2=" 24.8"  stroke="#0D00FF" stroke-width="2.5"/>
+    <!-- θ= 40°  cos= 0.7660 sin= 0.6428 -->
+    <line x1=" 99.6"  y1=" 83.6" x2=" 109.4" y2=" 91.9"  stroke="#0D00FF" stroke-width="1.5"/>
+
+    <!-- ─── NEEDLE ───
+         Points at 295° (just left of 12 o'clock, a "good" reading).
+         cos(295°)= 0.4226, sin(295°)=-0.9063
+         Tip at r=108: (45.6, -97.9)
+         Counter-weight tail at r=–24: (–10.1, 21.8)
+    ─── -->
+    <line
+      x1="-10.1" y1="21.8"
+      x2="45.6"  y2="-97.9"
+      stroke="#0D00FF" stroke-width="2"
+      stroke-linecap="round"
+    />
+    <!-- Needle pivot cap -->
+    <circle r="7.5" fill="#0D00FF" stroke="#F0F0EE" stroke-width="2"/>
+
+  </g><!-- /main instrument group -->
+
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Satellite element A — upper right           -->
+  <!-- ─────────────────────────────────────────── -->
+  <g transform="translate(497,105)">
+    <circle r="28" stroke="#0D00FF" stroke-width="1.5" stroke-opacity="0.65"/>
+    <circle r="10" fill="#0D00FF"   fill-opacity="0.75"/>
+  </g>
+  <!-- Dashed connector: main circle boundary toward A -->
+  <line
+    x1="350" y1="173"
+    x2="469" y2="105"
+    stroke="#0D00FF" stroke-width="0.75" stroke-opacity="0.18" stroke-dasharray="3 6"
+  />
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Satellite element B — lower left            -->
+  <!-- ─────────────────────────────────────────── -->
+  <g transform="translate(112,398)">
+    <circle r="20" stroke="#8680FF" stroke-width="1.5"/>
+    <circle r="7"  fill="#8680FF"/>
+  </g>
+  <!-- Dashed connector: main circle boundary toward B -->
+  <line
+    x1="205" y1="348"
+    x2="112" y2="398"
+    stroke="#8680FF" stroke-width="0.75" stroke-opacity="0.25" stroke-dasharray="3 6"
+  />
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Satellite element C — right mid             -->
+  <!-- ─────────────────────────────────────────── -->
+  <g transform="translate(545,318)">
+    <circle r="36"  stroke="#0D00FF" stroke-width="1" stroke-opacity="0.30"/>
+    <circle r="13"  stroke="#0D00FF" stroke-width="1.5" stroke-opacity="0.55"/>
+    <circle r="4"   fill="#0D00FF"   fill-opacity="0.60"/>
+  </g>
+  <!-- Dashed connector: toward C -->
+  <line
+    x1="425" y1="284"
+    x2="509" y2="316"
+    stroke="#0D00FF" stroke-width="0.75" stroke-opacity="0.15" stroke-dasharray="3 6"
+  />
+
+  <!-- ─────────────────────────────────────────── -->
+  <!-- Scattered data-point dots                   -->
+  <!-- ─────────────────────────────────────────── -->
+  <circle cx="178" cy="112" r="3"   fill="#0D00FF"   fill-opacity="0.45"/>
+  <circle cx="430" cy="168" r="3"   fill="#8680FF"   fill-opacity="0.60"/>
+  <circle cx="566" cy="195" r="2.5" fill="#0D00FF"   fill-opacity="0.35"/>
+  <circle cx="72"  cy="312" r="2.5" fill="#7A7A7A"   fill-opacity="0.40"/>
+  <circle cx="372" cy="452" r="3"   fill="#0D00FF"   fill-opacity="0.40"/>
+  <circle cx="494" cy="445" r="2.5" fill="#8680FF"   fill-opacity="0.45"/>
+  <circle cx="142" cy="188" r="2"   fill="#7A7A7A"   fill-opacity="0.35"/>
+
+</svg>
