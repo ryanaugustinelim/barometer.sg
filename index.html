@@ -560,6 +560,19 @@
       .hero-visual { display: none !important; }
     }
 
+    /* ── NAV CTA SCROLL REVEAL ──────────────────────────────── */
+    #nav-cta {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    #nav-cta.nav-cta-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
     /* ── TYPEWRITER CURSOR ───────────────────────────────────── */
     @keyframes blink {
       0%, 100% { opacity: 1; }
@@ -1169,6 +1182,23 @@
       }
 
       cycle();
+    })();
+
+    // Nav CTA scroll reveal
+    (function () {
+      const cta  = document.getElementById('nav-cta');
+      const hero = document.getElementById('hero-section');
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            cta.classList.remove('nav-cta-visible');
+          } else {
+            cta.classList.add('nav-cta-visible');
+          }
+        },
+        { threshold: 0 }
+      );
+      observer.observe(hero);
     })();
   </script>
 </body>
