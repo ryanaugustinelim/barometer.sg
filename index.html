@@ -565,12 +565,14 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
+      transform: scale(0);
+      transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
     }
     #nav-cta.nav-cta-visible {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
+      transform: scale(1);
     }
 
     /* ── TYPEWRITER CURSOR ───────────────────────────────────── */
@@ -751,7 +753,7 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- VALUE PROPS                                              -->
   <!-- ═══════════════════════════════════════════════════════ -->
-  <section id="value-props" data-section="value-props" style="background:#F7F7F5; padding:100px 0;">
+  <section id="value-props" data-section="value-props" style="background:#F7F7F5; padding:100px 0; scroll-margin-top:72px;">
     <div class="container">
 
       <div style="margin-bottom:64px;">
