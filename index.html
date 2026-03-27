@@ -450,6 +450,14 @@
         0 16px 32px rgba(0, 89, 255, 0.08);
     }
 
+    /* ── NAV INNER LAYOUT ────────────────────────────────────── */
+    @media (min-width: 1024px) {
+      #nav-inner {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+      }
+    }
+
     /* ── NAV LINK ─────────────────────────────────────────────── */
     .nav-link {
       font-size: var(--text-nav);
@@ -649,7 +657,7 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <nav id="nav" data-component="nav">
     <div class="container">
-      <div style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; height:72px;">
+      <div id="nav-inner" style="display:flex; justify-content:space-between; align-items:center; height:72px;">
 
         <!-- Logo: wordmark on desktop, circle mark on mobile -->
         <a href="https://www.barometer.sg" style="display:flex; align-items:center; text-decoration:none; flex-shrink:0;" aria-label="Barometer home">
