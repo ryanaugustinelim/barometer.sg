@@ -209,10 +209,15 @@
     /* ── MARQUEE ─────────────────────────────────────────────── */
     .marquee-outer {
       overflow: hidden;
-      background: var(--color-white);
-      border-top: 1.5px solid var(--color-blue);
-      border-bottom: 1.5px solid var(--color-blue);
-      padding: 14px 0;
+      background-color: var(--color-white);
+      /* Custom dashed top/bottom borders with wider gaps via gradient */
+      background-image:
+        repeating-linear-gradient(to right, var(--color-blue) 0, var(--color-blue) 7px, transparent 7px, transparent 22px),
+        repeating-linear-gradient(to right, var(--color-blue) 0, var(--color-blue) 7px, transparent 7px, transparent 22px);
+      background-size: 100% 1.5px, 100% 1.5px;
+      background-position: 0 0, 0 100%;
+      background-repeat: repeat-x, repeat-x;
+      padding: 7px 0;
     }
     .marquee-track {
       display: flex;
@@ -227,16 +232,16 @@
     .marquee-item {
       font-family: var(--font-family);
       font-weight: var(--font-weight-medium);
-      font-size: 0.8125rem;
+      font-size: 0.5625rem;
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--color-blue);
       white-space: nowrap;
-      padding: 0 52px;
+      padding: 0 26px;
     }
     .marquee-dot {
       color: rgba(0,89,255,0.30);
-      font-size: 1.25rem;
+      font-size: 0.625rem;
       line-height: 1;
       align-self: center;
       flex-shrink: 0;
@@ -455,26 +460,7 @@
       .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
 
       /* Nav CTA: tighter on mobile */
-      #nav-brand-text {
-      font-family: var(--font-family);
-      font-weight: var(--font-weight-super);
-      font-size: 1rem;
-      color: var(--color-blue);
-      letter-spacing: -0.025em;
-      margin-left: 10px;
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.75);
-      transform-origin: left center;
-      transition: opacity 0.22s ease, transform 0.22s ease;
-      white-space: nowrap;
-    }
-    #nav-brand-text.nav-brand-visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    #nav-cta { padding: 10px 16px !important; font-size: 0.8125rem !important; }
+      #nav-cta { padding: 10px 16px !important; font-size: 0.8125rem !important; }
     }
 
     /* Tablet: footer 2-col */
@@ -671,7 +657,7 @@
           </div>
 
           <p id="hero-desc" class="t-body" style="font-size:1.0625rem; max-width:440px; margin-bottom:40px;">
-            <span style="color: #0059FF; font-weight: bold;">Barometer.</span> is a product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team. 
+            <span style="color: #0059FF; font-weight: var(--font-weight-super);">Barometer.</span> is a product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team. 
           </p>
 
           <!-- Mobile: inline stat card (desktop version is in hero-visual) -->
@@ -1224,18 +1210,15 @@
       const cta   = document.getElementById('nav-cta');
       const brand = document.getElementById('nav-brand-text');
       const hero  = document.getElementById('hero-section');
-      let hideTimer;
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
+            // Immediately hide — no zoom-out animation to avoid rendering artifacts
             cta.classList.remove('nav-cta-visible');
             brand.classList.remove('nav-brand-visible');
-            hideTimer = setTimeout(() => {
-              cta.style.display = 'none';
-              brand.style.display = 'none';
-            }, 260);
+            cta.style.display = 'none';
+            brand.style.display = 'none';
           } else {
-            clearTimeout(hideTimer);
             cta.style.display = '';
             brand.style.display = '';
             requestAnimationFrame(() => requestAnimationFrame(() => {
