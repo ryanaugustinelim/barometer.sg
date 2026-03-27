@@ -524,8 +524,7 @@
         flex-direction: column;
       }
       #hero-cta-group {
-        margin-top: auto !important;
-        margin-bottom: auto !important;
+        margin-top: 24px;
       }
 
       /* Fixed-height typewriter wrapper — text anchors to bottom */
@@ -648,7 +647,7 @@
           <p id="hero-desc" class="t-body" style="font-size:1.0625rem; max-width:440px; margin-bottom:40px;">
             <span style="color: #0059FF; font-weight: bold;">Barometer.</span> is a product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team. 
           </p>
-`
+
           <!-- Mobile: inline stat card (desktop version is in hero-visual) -->
           <div class="stat-card-mobile">
             <div style="width:18px; height:2px; background:#0059FF; margin-bottom:10px;"></div>
@@ -1209,7 +1208,7 @@
             // Past hero — show and fade in
             clearTimeout(hideTimer);
             cta.style.display = '';
-            requestAnimationFrame(() => cta.classList.add('nav-cta-visible'));
+            requestAnimationFrame(() => requestAnimationFrame(() => cta.classList.add('nav-cta-visible')));
           }
         },
         { threshold: 0 }
