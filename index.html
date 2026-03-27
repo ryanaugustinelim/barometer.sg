@@ -209,15 +209,11 @@
     /* ── MARQUEE ─────────────────────────────────────────────── */
     .marquee-outer {
       overflow: hidden;
-      background-color: var(--color-white);
-      /* Custom dashed top/bottom borders with wider gaps via gradient */
-      background-image:
-        repeating-linear-gradient(to right, var(--color-blue) 0, var(--color-blue) 7px, transparent 7px, transparent 22px),
-        repeating-linear-gradient(to right, var(--color-blue) 0, var(--color-blue) 7px, transparent 7px, transparent 22px);
-      background-size: 100% 1.5px, 100% 1.5px;
-      background-position: 0 0, 0 100%;
-      background-repeat: repeat-x, repeat-x;
-      padding: 7px 0;
+      background: var(--color-white);
+      border-top: 1.5px dashed var(--color-blue);
+      border-bottom: 1.5px dashed var(--color-blue);
+      padding: 14px 0;
+      opacity: 0.5;
     }
     .marquee-track {
       display: flex;
@@ -232,16 +228,16 @@
     .marquee-item {
       font-family: var(--font-family);
       font-weight: var(--font-weight-medium);
-      font-size: 0.5625rem;
+      font-size: 0.8125rem;
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--color-blue);
       white-space: nowrap;
-      padding: 0 26px;
+      padding: 0 52px;
     }
     .marquee-dot {
       color: rgba(0,89,255,0.30);
-      font-size: 0.625rem;
+      font-size: 1.25rem;
       line-height: 1;
       align-self: center;
       flex-shrink: 0;
@@ -557,27 +553,29 @@
       margin-left: 10px;
       opacity: 0;
       pointer-events: none;
-      transform: scale(0.75);
       transform-origin: left center;
-      transition: opacity 0.22s ease, transform 0.22s ease;
       white-space: nowrap;
     }
     #nav-brand-text.nav-brand-visible {
       opacity: 1;
-      transform: scale(1);
+      pointer-events: auto;
+      animation: navZoomIn 0.22s ease forwards;
     }
 
     #nav-cta {
       opacity: 0;
       pointer-events: none;
-      transform: scale(0.75);
       transform-origin: right center;
-      transition: opacity 0.22s ease, transform 0.22s ease;
     }
     #nav-cta.nav-cta-visible {
       opacity: 1;
       pointer-events: auto;
-      transform: scale(1);
+      animation: navZoomIn 0.22s ease forwards;
+    }
+
+    @keyframes navZoomIn {
+      from { transform: scale(0.75); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
     }
 
     /* ── TYPEWRITER CURSOR ───────────────────────────────────── */
