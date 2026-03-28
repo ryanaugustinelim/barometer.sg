@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Barometer is a product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
-  <title>Barometer.sg — Fractional Product Research & Design</title>
+  <meta name="description" content="Barometer is a fractional product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
+  <title>Barometer Singapore — Fractional Product Research & Design</title>
   <link rel="icon" type="image/svg+xml" href="./Barometer Logo Vector.svg" />
 
   <!-- Canonical -->
@@ -13,8 +13,8 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://www.barometer.sg" />
-  <meta property="og:title"       content="Barometer — Product Research & Design, Singapore" />
-  <meta property="og:description" content="Barometer is a product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
+  <meta property="og:title"       content="Barometer — Fractional Product Research & Design, Singapore" />
+  <meta property="og:description" content="Barometer is a fractional product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
   <meta property="og:image"       content="https://www.barometer.sg/og-image.png" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
@@ -23,8 +23,8 @@
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Barometer — Product Research & Design, Singapore" />
-  <meta name="twitter:description" content="Barometer is a product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
+  <meta name="twitter:title"       content="Barometer — Fractional Product Research & Design, Singapore" />
+  <meta name="twitter:description" content="Barometer is a fractional product research and design agency in Singapore. Go from idea to validated product without hiring a full-time team." />
   <meta name="twitter:image"       content="https://www.barometer.sg/og-image.png" />
 
   <!-- Structured data -->
@@ -36,7 +36,7 @@
     "url": "https://www.barometer.sg",
     "email": "hello@barometer.sg",
     "logo": "https://www.barometer.sg/Barometer Logo Vector.svg",
-    "description": "Barometer is a product research and design agency in Singapore. We help founders and teams go from idea to validated product without the cost of a full-time team.",
+    "description": "Barometer is a fractional product research and design agency in Singapore. We help founders and teams go from idea to validated product without the cost of a full-time team.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "SG",
@@ -478,6 +478,10 @@
     }
 
     /* ── NAV INNER LAYOUT ────────────────────────────────────── */
+    #nav-inner {
+      display: flex;
+      justify-content: space-between;
+    }
     @media (min-width: 1024px) {
       #nav-inner {
         display: grid;
@@ -682,7 +686,7 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <nav id="nav" data-component="nav">
     <div class="container">
-      <div id="nav-inner" style="display:flex; justify-content:space-between; align-items:center; height:72px;">
+      <div id="nav-inner" style="align-items:center; height:72px;">
 
         <!-- Logo: wordmark on desktop, circle mark on mobile -->
         <a href="https://www.barometer.sg" style="display:flex; align-items:center; text-decoration:none; flex-shrink:0;" aria-label="Barometer home">
@@ -751,7 +755,7 @@
           </div>
 
           <p id="hero-desc" class="t-body" style="font-size:1.0625rem; max-width:440px; margin-bottom:40px;">
-            <span style="color: #0059FF; font-weight: var(--font-weight-super);">Barometer.</span> is a product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team. 
+            <span style="color: #0059FF; font-weight: var(--font-weight-super);">Barometer.</span> is a fractional product research and design agency in Singapore. We help founders and teams go from idea to validated product — without the cost of a full-time team. 
           </p>
 
           <!-- Mobile: inline stat card (desktop version is in hero-visual) -->
@@ -1085,7 +1089,7 @@
           </div>
 
           <h3 class="t-h3" style="margin-bottom:16px; line-height:1.2;">
-            Innovation workstreams, Fractional support, and Corporate training
+            Innovation workstreams, fractional support, and corporate training
           </h3>
 
           <p class="t-body" style="margin-bottom:28px; flex:1;">
@@ -1310,31 +1314,54 @@
 
     // Nav CTA + brand text scroll reveal
     (function () {
-      const cta   = document.getElementById('nav-cta');
-      const brand = document.getElementById('nav-brand-text');
-      const hero  = document.getElementById('hero-section');
+      const cta     = document.getElementById('nav-cta');
+      const brand   = document.getElementById('nav-brand-text');
+      const hero    = document.getElementById('hero-section');
+      const ctaSec  = document.getElementById('cta-section');
+      const visible = new Set();
+      let showToken = 0;
+
+      function hide() {
+        showToken++;
+        cta.classList.remove('nav-cta-visible');
+        brand.classList.remove('nav-brand-visible');
+        cta.style.display = 'none';
+        brand.style.display = 'none';
+      }
+
+      function show() {
+        const token = ++showToken;
+        cta.style.display = '';
+        brand.style.display = '';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (token !== showToken) return;
+          cta.classList.add('nav-cta-visible');
+          brand.classList.add('nav-brand-visible');
+        }));
+      }
+
       const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            // Immediately hide — no zoom-out animation to avoid rendering artifacts
-            cta.classList.remove('nav-cta-visible');
-            brand.classList.remove('nav-brand-visible');
-            cta.style.display = 'none';
-            brand.style.display = 'none';
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              visible.add(entry.target);
+            } else {
+              visible.delete(entry.target);
+            }
+          });
+          if (visible.size > 0) {
+            hide();
           } else {
-            cta.style.display = '';
-            brand.style.display = '';
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-              cta.classList.add('nav-cta-visible');
-              brand.classList.add('nav-brand-visible');
-            }));
+            show();
           }
         },
         { threshold: 0 }
       );
+
       cta.style.display = 'none';
       brand.style.display = 'none';
       observer.observe(hero);
+      observer.observe(ctaSec);
     })();
   </script>
 </body>
